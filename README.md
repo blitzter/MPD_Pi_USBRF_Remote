@@ -1,7 +1,7 @@
 # MPD_Pi_USBRF_Remote
 
-## Mpd remote controller example application
-## Will need to modify based on you remote and configuration/needs
+Mpd remote controller example application.
+You will need to modify based on your specific remote and configuration/needs.
 
 ## My Setup
 ### ReadOnly raspberry Pi w

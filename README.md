@@ -71,3 +71,11 @@ esac
 ### Put controller.py in /mnt/sda1/scripts
 ### Make raspberry pi readonly
 make sure you have tested every thing you need before this step
+The link below is a clone of https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/read-only-fs.sh
+I didn't want to loose the current version so I made a copy, you can use original too 
+It will make it hard to install new libraries but I need a more stable sysem(SD corruption is a big problem)
+Make a copy before and after this step... so you can revert if you want
+```
+wget https://raw.githubusercontent.com/blitzter/Raspberry-Pi-Installer-Scripts/master/read-only-fs.sh
+sudo bash read-only-fs.sh
+```

@@ -3,11 +3,11 @@
 Mpd remote controller example application.
 You will need to modify based on your specific remote and configuration/needs.
 
-## My Setup
-### ReadOnly raspberry Pi w
-### Usb Drive... Music folder for music, mpd folder for mpd library etc, mpd/playlists for mpd playlists
-### Asus Usb Sound Card
-### Usb RF remote
+### My Setup
+- ReadOnly raspberry Pi w (16gb sd card, power supply)
+- Usb Drive... Music folder for music, mpd folder for mpd library etc, mpd/playlists for mpd playlists
+- Asus Usb Sound Card
+- Usb RF remote
 
 # Install Guide Steps from new Raspberry Pi which is accessible from ssh
 ```
@@ -15,15 +15,15 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo rasp-config
 ```
->expand filesystem, update, timezone etc
+### Expand filesystem, update, timezone, boot to autologin/console etc
 ```
 sudo apt-get install mpd mpc
 ```
->add this line to /etc/fstab 
+### Add this line to /etc/fstab 
 ```
 /dev/sda1	/mnt/sda1	auto	nofail,uid=109,gid=29,noatime	0	0	
 ```
->set the following in /etc/mpd.conf for readonly setup
+### Set the following in /etc/mpd.conf for readonly setup
 ```
 music_directory		"/mnt/sda1/Music"
 playlist_directory		"/mnt/sda1/mpd/playlists"
@@ -37,3 +37,38 @@ port             "6600"
 save_absolute_paths_in_playlists	"yes"
 auto_update    "yes"
 ```
+### Install other requirements
+```
+sudo apt-get install python-pip python-mpd
+sudo pip install evdev
+```
+### Put this at the end of /etc/profile (or any way you want to start a sample script on login)
+I chose this just because this is easy but I have to use a check in startup.sh to see if it is the default autologin tty
+```
+if [ -e /mnt/sda1/scripts/startup.sh ]
+then
+    echo "Start up file found... executing"
+    sh /mnt/sda1/scripts/startup.sh
+else
+    echo "Start up file not found"
+fi
+```
+### /mnt/sda1/scripts/startup.sh
+This can be used to put login message and start up scripts.
+This is in USB which is writable even after pi is readonly so you can use this to make other changes
+Any installation will not be easy after readonly so make sure you install all you need to future development before making the pi readonly 
+```
+#!/bin/sh
+
+echo "In Startup Script"
+tty=$(tty)
+case "$(tty)" in
+  /dev/tty1) 
+    echo "Starting BlitzMp3Player" > /tmp/start_"$(date +"%Y_%m_%d_%I_%M_%p").log"
+    python /mnt/sda1/scripts/controller.py &
+    ;;
+  *) echo "Startup not required on this tty"
+    ;;
+esac
+```
+### Put controller.py in /mnt/sda1/scripts

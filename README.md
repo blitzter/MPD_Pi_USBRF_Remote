@@ -1,15 +1,15 @@
 # MPD_Pi_USBRF_Remote
 
-##Mpd remote controller example application
-##Will need to modify based on you remote and configuration/needs
+## Mpd remote controller example application
+## Will need to modify based on you remote and configuration/needs
 
-##My Setup
-###ReadOnly raspberry Pi w
-###Usb Drive... Music folder for music, mpd folder for mpd library etc, mpd/playlists for mpd playlists
-###Asus Usb Sound Card
-###Usb RF remote
+## My Setup
+### ReadOnly raspberry Pi w
+### Usb Drive... Music folder for music, mpd folder for mpd library etc, mpd/playlists for mpd playlists
+### Asus Usb Sound Card
+### Usb RF remote
 
-#Install Guide Steps from new Raspberry Pi which is accessible from ssh
+# Install Guide Steps from new Raspberry Pi which is accessible from ssh
 ```
 sudo apt-get update
 sudo apt-get upgrade

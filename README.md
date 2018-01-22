@@ -17,13 +17,15 @@ sudo rasp-config
 ```
 ### Expand filesystem, update, timezone, boot to autologin/console etc
 ```
-sudo apt-get install mpd mpc
+sudo apt-get install mpd mpc python-pip python-mpd
+sudo pip install evdev
 ```
 ### Add this line to /etc/fstab 
 ```
 /dev/sda1	/mnt/sda1	auto	nofail,uid=109,gid=29,noatime	0	0	
 ```
 ### Set the following in /etc/mpd.conf for readonly setup
+And any other things you may want to set like sound card/ mixer etc
 ```
 music_directory		"/mnt/sda1/Music"
 playlist_directory		"/mnt/sda1/mpd/playlists"
@@ -36,11 +38,6 @@ bind_to_address		"0.0.0.0"
 port             "6600"
 save_absolute_paths_in_playlists	"yes"
 auto_update    "yes"
-```
-### Install other requirements
-```
-sudo apt-get install python-pip python-mpd
-sudo pip install evdev
 ```
 ### Put this at the end of /etc/profile (or any way you want to start a sample script on login)
 I chose this just because this is easy but I have to use a check in startup.sh to see if it is the default autologin tty
@@ -72,3 +69,5 @@ case "$(tty)" in
 esac
 ```
 ### Put controller.py in /mnt/sda1/scripts
+### Make raspberry pi readonly
+make sure you have tested every thing you need before this step

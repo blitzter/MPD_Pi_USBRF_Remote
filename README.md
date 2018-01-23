@@ -69,6 +69,9 @@ case "$(tty)" in
 esac
 ```
 ### Put controller.py in /mnt/sda1/scripts
+In the controller.py change the controller device path, mpd connect settings according to your setup.
+Also test whether the keys on your remote match ones in the code. 
+Change according to what you need the keys to do and maybe add functionality.
 ### Make raspberry pi readonly
 make sure you have tested every thing you need before this step
 The link below is a clone of https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/read-only-fs.sh

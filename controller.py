@@ -55,7 +55,7 @@ def handle_key_up(code):
     elif ecodes.ecodes['KEY_POWER'] == code:
         print('KEY_POWER key pressed..... Turning off')
         if sys.platform.startswith('linux'):
-            call("sudo nohup shutdown -h now", shell=True)
+            call("sudo nohup shutdown -h now > /tmp/nohup.out", shell=True)
         else:
             print("Can't PowerOff from remote")
     elif ecodes.ecodes['KEY_NEXTSONG'] == code:
